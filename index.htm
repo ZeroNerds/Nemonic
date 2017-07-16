@@ -1,0 +1,57 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/socket.io.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/cell.js"      type="text/javascript" charset="utf-8"></script>
+<script>
+ಠᴥಠ = {
+  $cell: true,
+  _socket: null,
+  style: "position: relative; font-size: 18px; font-family: Helvetica, arial; padding: 10px; padding-bottom: 20px; padding-top: 20px; color: #C7C7C0;",
+  _add: function(m) { this.querySelector(".container")._add(m) },
+  _utterance: null,
+  $init: function() {
+    this._socket = io("https://hohoho-qbaoxmwwzj.now.sh")
+    this._socket.on('message', function (data) { this._add(data.message) }.bind(this))
+    this._utterance = new SpeechSynthesisUtterance()
+  },
+  $components: [{
+    $type: "body",
+	style: "background: #757570;"
+  },
+  {
+    $type: "a",
+	target: "_blank",
+	href: "https://github.com/ZeroNetJS/Nemonic",
+	$text: "Source",
+	style: "position: fixed; top: 3px; left: 3px; border-radius: 10px; font-size: 12px; padding: 2px 5px 2px 5px; text-decoration: none; background: #454540; color: white;"
+  }, {
+    class: "container", _messages: [],
+    _add: function(m){
+      this._messages.push(m)
+      this._utterance.text = m;
+    },
+    _message: function(m) { return { class: "row", $text: m } },
+    $update: function() {
+      this.$components = this._messages.map(this._message)
+      window.scrollTo(0,document.body.scrollHeight)
+      speechSynthesis.speak(this._utterance)
+    }
+  }, {
+    style: "position: fixed; bottom: 0; left: 40px; right: 40px; border-radius: 10px; padding: 5px; background: #70706A;",
+    $components: [{
+      $type: "input",
+	  placeholder: "Comment",
+	  style: "outline: none; width: 100%; padding: 5px; font-size: 20px; background: #454540; color: white;",
+	  autofocus: true, onkeyup: function(e) {
+        if (e.keyCode === 13) {
+          this._socket.emit('message', this.value)
+          this._add(this.value)
+          this.value = ""
+        }
+      }
+    }]
+  }]
+}
+
+</script>
+</html>
