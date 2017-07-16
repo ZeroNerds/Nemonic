@@ -1,0 +1,11 @@
+*.exe
+*.log
+.git
+.idea
+
+node_modules
+dist
+temp
+
+data/*
+log/*
