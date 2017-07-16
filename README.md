@@ -21,7 +21,8 @@ Another browser based around Electron, Zeronet, Beaker, Ory Editor, etc.
 
 ### Todo
 
-- [ ] integrate Zeronet/Beaker/Ory/etc
+- [x] integrate Beaker
+- [ ] integrate Zeronet/Ory/etc
 - [ ] 3D interface
 
 

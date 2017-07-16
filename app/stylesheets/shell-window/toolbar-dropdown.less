@@ -1,0 +1,274 @@
+@import "../components/dropdown";
+@import "../components/link";
+@import "../utils/flex";
+@import "../base/spacing";
+@import "../base/colors";
+
+.toolbar-dropdown-menu-btn {
+  position: relative;
+
+  progress {
+    position: absolute;
+    // TODO: This is jank. Instead of automatically opening the menu and showing this progress
+    // bar, let's add a similar pop up like Chrome does on the bottom of the
+    // screen. -tbv
+    bottom: -43%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.toolbar-dropdown {
+
+  h2 {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  hr {
+    // TODO: remove this once we pull out photonkit -tbv
+    margin: 0;
+    border-bottom: 1px solid @border-menu;
+  }
+
+  .dropdown-items {
+    border-radius: 4px;
+    width: 275px;
+  }
+
+  .footer {
+    display: flex;
+    border-top: 1px solid @border-menu;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+    i {
+      margin-right: 5px;
+      width: 15px;
+      text-align: center;
+    }
+
+    a {
+      padding: @padding-component--tight @padding-component;
+      cursor: pointer;
+      background: @background-menu;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+
+      &:hover span {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      &:first-child {
+        padding-right: 0;
+      }
+      &:last-child {
+        flex: 1;
+      }
+    }
+  }
+
+  .list {
+    padding: 8px 0 10px;
+  }
+
+  .list-item {
+    padding: 3px 12px;
+    cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
+
+    i {
+      width: 20px;
+      text-align: center;
+      margin-right: 5px;
+    }
+
+    &:hover {
+      background: @background-menu;
+    }
+  }
+
+  .grid {
+    padding: @padding-component @padding-component @padding-component--tight @padding-component;
+    &:extend(.flex);
+    justify-content: space-between;
+
+    // Make the last item in the flex container float to the left
+    &.default:after {
+      content: '';
+      flex: auto;
+      flex-basis: 33%
+    }
+  }
+
+  .grid-item {
+    flex-basis: 33%;
+    height: 60px;
+    text-align: center;
+    line-height: 12px;
+    font-size: 11px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    margin-bottom: 5px;
+
+    i {
+      cursor: default;
+      width: 100%;
+      font-size: 25px;
+      margin-bottom: @margin-icon;
+    }
+
+    &:hover {
+      background: @background-menu;
+      border: 1px solid @border-menu;
+    }
+
+    &.disabled {
+      color: @color-text--light;
+      background: transparent;
+      border: 1px solid transparent;
+    }
+  }
+
+  .downloads {
+    padding: @padding-component--tight @padding-component;
+    font-size: 11px;
+
+    a {
+      &:extend(.link);
+    }
+
+    a:hover {
+      &:extend(.link:hover);
+    }
+  }
+
+  .downloads-list {
+    margin: @padding-component--tight 0;
+  }
+
+  .download-item {
+    width: 100%;
+    margin-bottom: @padding-component--tight;
+
+    .status progress {
+      width: 50px;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .download-item-ctrls a {
+    margin-right: 3px;
+  }
+}
+
+.toolbar-updates {
+  display: inline-block;
+  position: relative;
+
+  .icon-up-circled {
+    color: #008fe8;
+  }
+}
+
+.toolbar-updates-dropdown {
+
+  .toolbar-updates-dropdown-inner {
+    position: absolute;
+    z-index: 1000;
+    line-height: 1.3;
+    font-size: 12px;
+    background: #fff;
+    width: 199px;
+    padding: 10px 14px;
+    left: -170px;
+
+    a {
+      &:extend(.link);
+
+      &:hover {
+        &:extend(.link:hover);
+      }
+    }
+  }
+}
+
+.toolbar-site-info-dropdown {
+  position: absolute;
+  left: -80px;
+  top: 30px;
+  width: 400px;
+
+  a {
+    &:extend(.link);
+  }
+
+  a:hover {
+    &:extend(.link:hover);
+  }
+
+  .dropdown-items {
+    width: 300px;
+    left: 65px;
+
+    &::before {
+      left: 25px;
+    }
+  }
+
+  .details {
+    padding: @padding-component 15px;
+    font-size: .85rem;
+
+    small {
+      font-size: .75rem;
+      color: @color-text--muted;
+    }
+  }
+
+  .details-title {
+    font-weight: bold;
+  }
+
+  .details-desc {
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+
+  .perms {
+    font-size: 13px;
+    background: #fafafa;
+
+    div {
+      border-top: 1px solid #eee;
+    }
+
+    label {
+      display: block;
+      padding: 10px;
+      margin: 0;
+      &.checked {
+        background: #fff;
+      }
+    }
+
+    input {
+      margin-right: 4px;
+    }
+
+    .icon {
+      width: 15px;
+      text-align: center;
+      display: inline-block;
+      margin-right: 2px;
+    }
+  }
+}
