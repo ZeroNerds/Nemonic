@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "express": "^4.15.3",
-    "socket.io": "^2.0.2"
+    "socket.io": "^3.0.0"
   },
   "scripts": {
     "postinstall": "cd app && npm install",
